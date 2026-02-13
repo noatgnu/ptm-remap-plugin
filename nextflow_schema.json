@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "PTM Position Remapping pipeline parameters",
+    "description": "Remap PTM positions from peptides to protein sequences using UniProt data",
+    "type": "object",
+    "definitions": {
+        "plugin_parameters": {
+            "title": "Plugin parameters",
+            "description": "Parameters for the PTM Position Remapping plugin.",
+            "type": "object",
+            "properties": {
+                "fasta_file": {
+                    "type": "string",
+                    "description": "Optional FASTA file with protein sequences. If not provided, sequences will be fetched from UniProt.",
+                    "format": "file-path"
+                },
+                "input_file": {
+                    "type": "string",
+                    "description": "Tab-separated or CSV file containing peptide data",
+                    "format": "file-path"
+                },
+                "peptide_column": {
+                    "type": "string",
+                    "description": "Column containing peptide sequences"
+                },
+                "position_in_peptide_column": {
+                    "type": "string",
+                    "description": "Column containing the position of the PTM within the peptide"
+                },
+                "uniprot_acc_column": {
+                    "type": "string",
+                    "description": "Column containing UniProt accession IDs"
+                }
+            }
+        }
+    },
+    "properties": {
+        "fasta_file": {
+            "$ref": "#/definitions/plugin_parameters/properties/fasta_file"
+        },
+        "input_file": {
+            "$ref": "#/definitions/plugin_parameters/properties/input_file"
+        },
+        "peptide_column": {
+            "$ref": "#/definitions/plugin_parameters/properties/peptide_column"
+        },
+        "position_in_peptide_column": {
+            "$ref": "#/definitions/plugin_parameters/properties/position_in_peptide_column"
+        },
+        "uniprot_acc_column": {
+            "$ref": "#/definitions/plugin_parameters/properties/uniprot_acc_column"
+        }
+    }
+}
