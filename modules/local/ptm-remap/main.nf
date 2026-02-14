@@ -24,6 +24,18 @@ process PTM_REMAP {
     ARG_LIST=()
 
     
+    # Mapping for uniprot_acc_column
+    VAL="$uniprot_acc_column"
+    if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
+        ARG_LIST+=("--uniprot-col" "\$VAL")
+    fi
+    
+    # Mapping for fasta_file
+    VAL="$fasta_file"
+    if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
+        ARG_LIST+=("--fasta" "\$VAL")
+    fi
+    
     # Mapping for input_file
     VAL="$input_file"
     if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
@@ -40,18 +52,6 @@ process PTM_REMAP {
     VAL="$position_in_peptide_column"
     if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
         ARG_LIST+=("--position-col" "\$VAL")
-    fi
-    
-    # Mapping for uniprot_acc_column
-    VAL="$uniprot_acc_column"
-    if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
-        ARG_LIST+=("--uniprot-col" "\$VAL")
-    fi
-    
-    # Mapping for fasta_file
-    VAL="$fasta_file"
-    if [ -n "\$VAL" ] && [ "\$VAL" != "null" ] && [ "\$VAL" != "[]" ]; then
-        ARG_LIST+=("--fasta" "\$VAL")
     fi
     
     python /app/remap_ptm.py \

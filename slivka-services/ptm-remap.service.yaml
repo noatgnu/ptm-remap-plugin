@@ -1,0 +1,72 @@
+# Slivka service configuration for ptm-remap
+# Generated from Cauldron plugin format
+#
+# For file inputs that reference large databases (e.g., FASTA databases),
+# consider configuring them as environment variables pointing to shared storage:
+#   env:
+#     DATABASE_PATH: "${SLIVKA_HOME}/databases/uniref90.fasta"
+# Then reference in args as: arg: "--db=${DATABASE_PATH}"
+
+slivka-version: "0.8"
+name: ptm-remap
+description: Remap PTM positions from peptides to protein sequences using UniProt data
+author: Cauldron Team
+version: "1.0.0"
+license: MIT
+classifiers:
+  - "Topic :: Scientific/Engineering :: Bio-Informatics"
+
+parameters:
+  input_file:
+    name: "Input File"
+    description: "Tab-separated or CSV file containing peptide data"
+    type: file
+    required: true
+  peptide_column:
+    name: "Peptide Sequence Column"
+    description: "Column containing peptide sequences"
+    type: text
+    required: true
+  position_in_peptide_column:
+    name: "Position in Peptide Column"
+    description: "Column containing the position of the PTM within the peptide"
+    type: text
+    required: true
+  uniprot_acc_column:
+    name: "UniProt Accession Column"
+    description: "Column containing UniProt accession IDs"
+    type: text
+    required: true
+  fasta_file:
+    name: "FASTA File (Optional)"
+    description: "Optional FASTA file with protein sequences. If not provided, sequences will be fetched from UniProt."
+    type: file
+
+command:
+  - python
+  - remap_ptm.py
+
+args:
+  input_file:
+    arg: "--input=$(value)"
+    symlink: "input_file"
+  peptide_column:
+    arg: "--peptide-col=$(value)"
+  position_in_peptide_column:
+    arg: "--position-col=$(value)"
+  uniprot_acc_column:
+    arg: "--uniprot-col=$(value)"
+  fasta_file:
+    arg: "--fasta=$(value)"
+    symlink: "fasta_file"
+  _output_dir:
+    arg: "--output-dir=."
+
+outputs:
+  remapped_peptides.txt:
+    path: "remapped_peptides.txt"
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
