@@ -3,7 +3,7 @@ plugin:
   name: PTM Position Remapping
   version: 1.0.0
   description: Remap PTM positions from peptides to protein sequences using UniProt data
-  author: Cauldron Team
+  author: "CauldronGO Team"
   category: utilities
   icon: swap_horiz
   repository: https://github.com/noatgnu/ptm-remap-plugin
@@ -25,24 +25,24 @@ inputs:
 
   - name: peptide_column
     label: Peptide Sequence Column
-    type: column
+    type: column-selector
     required: true
     description: Column containing peptide sequences
-    source: input_file
+    sourceFile: input_file
 
   - name: position_in_peptide_column
     label: Position in Peptide Column
-    type: column
+    type: column-selector
     required: true
     description: Column containing the position of the PTM within the peptide
-    source: input_file
+    sourceFile: input_file
 
   - name: uniprot_acc_column
     label: UniProt Accession Column
-    type: column
+    type: column-selector
     required: true
     description: Column containing UniProt accession IDs
-    source: input_file
+    sourceFile: input_file
 
   - name: fasta_file
     label: FASTA File (Optional)
