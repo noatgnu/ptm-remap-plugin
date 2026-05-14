@@ -17,7 +17,7 @@
 **ID**: `ptm-remap`  
 **Version**: 1.0.0  
 **Category**: utilities  
-**Author**: Cauldron Team
+**Author**: CauldronGO Team
 
 ## Description
 
@@ -34,9 +34,9 @@ Remap PTM positions from peptides to protein sequences using UniProt data
 | Name | Label | Type | Required | Default | Visibility |
 |------|-------|------|----------|---------|------------|
 | `input_file` | Input File | file | Yes | - | Always visible |
-| `peptide_column` | Peptide Sequence Column | column | Yes | - | Always visible |
-| `position_in_peptide_column` | Position in Peptide Column | column | Yes | - | Always visible |
-| `uniprot_acc_column` | UniProt Accession Column | column | Yes | - | Always visible |
+| `peptide_column` | Peptide Sequence Column | column-selector (single) | Yes | - | Always visible |
+| `position_in_peptide_column` | Position in Peptide Column | column-selector (single) | Yes | - | Always visible |
+| `uniprot_acc_column` | UniProt Accession Column | column-selector (single) | Yes | - | Always visible |
 | `fasta_file` | FASTA File (Optional) | file | No | - | Always visible |
 
 ### Input Details
@@ -50,16 +50,19 @@ Tab-separated or CSV file containing peptide data
 
 Column containing peptide sequences
 
+- **Column Source**: `input_file`
 
 #### Position in Peptide Column (`position_in_peptide_column`)
 
 Column containing the position of the PTM within the peptide
 
+- **Column Source**: `input_file`
 
 #### UniProt Accession Column (`uniprot_acc_column`)
 
 Column containing UniProt accession IDs
 
+- **Column Source**: `input_file`
 
 #### FASTA File (Optional) (`fasta_file`)
 
